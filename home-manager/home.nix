@@ -40,6 +40,7 @@
     pkgs.krita
     pkgs.inkscape
     pkgs.obs-studio
+    pkgs.blockbench
     pkgs.kdePackages.kdenlive
     pkgs.xournalpp
     pkgs.rnote
@@ -259,15 +260,17 @@
       comment.enable = true;
       orgmode.enable = true;
       vimtex.enable = true;
+      web-devicons.enable = true;
 
       lsp = {
         enable = true;
         servers = {
           nil_ls.enable = true;
           rust_analyzer.enable = true;
+          rust_analyzer.installRustc = false;
+          rust_analyzer.installCargo = false;
           clangd.enable = true;
           pyright.enable = true;
-          ts-ls.enable = true;
           zls.enable = true;
         };
         onAttach = ''

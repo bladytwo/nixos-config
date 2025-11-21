@@ -154,7 +154,7 @@
 
   environment.systemPackages = with pkgs; [
     home-manager
-    brave
+    vivaldi
     neovim
     nil
     brightnessctl
