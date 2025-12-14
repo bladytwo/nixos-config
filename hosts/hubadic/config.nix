@@ -194,6 +194,7 @@
     mpv
     feh
     polymc
+    temurin-bin-17
 
   ];
 

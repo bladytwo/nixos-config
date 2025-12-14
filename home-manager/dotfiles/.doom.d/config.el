@@ -58,15 +58,27 @@
 ;; Font size
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 20)
       doom-variable-pitch-font (font-spec :family "JetBrainsMono Nerd Font" :size 20)
-      doom-unicode-font (font-spec :family "JetBrainsMono Nerd Font" :size 20)
+      doom-symbol-font (font-spec :family "JetBrainsMono Nerd Font" :size 20)
       doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 28))
+
+;; Cursor
+(after! evil
+  (setq evil-normal-state-cursor '(box "#93E1D8")   ;; soft aqua
+        evil-insert-state-cursor '(box "#F4D06F")   ;; warm pastel yellow
+        evil-visual-state-cursor '(box "#F29BA2")   ;; gentle rose-pink
+        evil-replace-state-cursor '(box "#FFE5B4")  ;; peach
+        evil-motion-state-cursor '(box "#A8DADC")   ;; glacier teal
+        evil-operator-state-cursor '(box "#CDB4DB") ;; lavender purple
+        evil-emacs-state-cursor 'box))
+
+(setq-default cursor-type 'box)
 
 ;; Larger LaTeX previews
 (after! org
   (setq org-format-latex-options
         (plist-put org-format-latex-options :scale 2.0))
-  (setq org-startup-with-latex-preview t
-        org-startup-with-inline-images t
+  (setq org-startup-with-latex-preview nil
+        org-startup-with-inline-images nil
         org-pretty-entities t))
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an

@@ -55,4 +55,9 @@
 
 (package! company-auctex)
 (package! company-math)
-(package! company-math)
+(package! odin-mode
+  :recipe (:host github
+           :repo "mattt-b/odin-mode"
+           )
+  :pin "65134ecf10ffc4893ca60432b979a23c5ac9a3f1"
+  )

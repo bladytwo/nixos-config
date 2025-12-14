@@ -12,7 +12,7 @@
   nixpkgs.config.allowUnfree = true;
 
   imports = [
-    inputs.nixvim.homeManagerModules.nixvim
+    inputs.nixvim.homeModules.nixvim
     inputs.nix-flatpak.homeManagerModules.nix-flatpak
     inputs.nix-doom-emacs.homeModule
   ];
@@ -40,6 +40,7 @@
     pkgs.krita
     pkgs.inkscape
     pkgs.obs-studio
+    pkgs.davinci-resolve
     pkgs.blockbench
     pkgs.kdePackages.kdenlive
     pkgs.xournalpp
@@ -50,15 +51,16 @@
     pkgs.texliveFull
     pkgs.texlab
     pkgs.ghostscript
+    pkgs.discord
+    pkgs.python3
   ];
 
   home.file = {
     ".config/hypr/hyprland.conf".source = dotfiles/hyprland.conf;
     ".config/hypr/hyprpaper.conf".text = ''
-      preload = ~/.cache/futuristic-moon-background.jpg
-      wallpaper = ,~/.cache/futuristic-moon-background.jpg
+      preload = ~/.cache/bg.jpg
+      wallpaper = ,~/.cache/bg.jpg
     '';
-    ".cache/futuristic-moon-background.jpg".source = dotfiles/futuristic-moon-background.jpg;
     ".config/alacritty/alacritty.toml".source = dotfiles/alacritty.toml;
     ".config/waybar/config.jsonc".source = dotfiles/waybar.jsonc;
     ".config/waybar/style.css".source = dotfiles/waybar.css;
