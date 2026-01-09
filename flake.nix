@@ -21,8 +21,6 @@
     doom-config.url = "path:./home-manager/dotfiles/.doom.d";
     doom-config.flake = false;
 
-    polymc.url = "github:PolyMC/PolyMC";
-    nix-minecraft.url = "github:Infinidoge/nix-minecraft";
   };
 
   outputs =

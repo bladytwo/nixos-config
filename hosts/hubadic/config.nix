@@ -4,11 +4,12 @@
   inputs,
   ...
 }:
-
+let
+  lib = pkgs.lib;
+in
 {
   imports = [
     ./hardware.nix
-    inputs.nix-minecraft.nixosModules.minecraft-servers
   ];
 
   boot.loader.systemd-boot.enable = true;
@@ -82,13 +83,15 @@
   programs.java.enable = true;
   programs.java.package = pkgs.temurin-bin;
 
+  programs.xwayland.enable = true;
+
   fonts.packages = with pkgs; [
     nerd-fonts.iosevka
     nerd-fonts.fira-code
     nerd-fonts.jetbrains-mono
     noto-fonts
     noto-fonts-cjk-sans
-    noto-fonts-emoji
+    noto-fonts-color-emoji
   ];
   fonts.fontconfig.enable = true;
   fonts.fontconfig.defaultFonts = {
@@ -111,6 +114,16 @@
   };
 
   services.flatpak.enable = true;
+
+  # Waydroid
+  virtualisation.waydroid = {
+    enable = true;
+    package = pkgs.waydroid-nftables;
+  };
+  ##
+
+  services.terraria.enable = true;
+  systemd.services.terraria.wantedBy = lib.mkForce [ ];
 
   users.users.nullen = {
     isNormalUser = true;
@@ -141,16 +154,14 @@
     xwayland.enable = true;
   };
 
+  programs.niri.enable = true;
+
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
   ];
 
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.overlays = [
-    inputs.polymc.overlay
-    inputs.nix-minecraft.overlay
-  ];
 
   environment.systemPackages = with pkgs; [
     home-manager
@@ -165,13 +176,12 @@
     grim
     slurp
     wdisplays
-    hyprpaper
     waybar
     fd
-    gh
     ripgrep
     lsd
     unzip
+    lzip
     htop-vim
     zenith
     gnumake
@@ -182,7 +192,7 @@
     qt6.qtbase
     qt5.qtwayland
     qt5.qtbase
-    alacritty
+    kitty
     kdePackages.dolphin
     kdePackages.kio-admin
     blockbench
@@ -193,9 +203,8 @@
     android-file-transfer
     mpv
     feh
-    polymc
     temurin-bin-17
-
+    android-tools
   ];
 
   programs.ydotool.enable = true;
@@ -214,28 +223,6 @@
           capslock = "overload(control, esc)";
           tab = "backspace";
           backspace = "tab";
-        };
-      };
-    };
-  };
-
-  services.minecraft-servers = {
-    enable = true;
-    eula = true;
-    openFirewall = true;
-
-    servers = {
-      fabric1 = {
-        enable = false;
-        package = pkgs.fabricServers.fabric-1_20_1;
-
-        serverProperties = {
-          online-mode = false;
-          server-port = 25568;
-        };
-
-        symlinks = {
-          "mods" = ./../../minecraft-server/fabric1/mods;
         };
       };
     };

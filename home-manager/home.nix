@@ -4,7 +4,6 @@
   pkgs,
   ...
 }:
-
 {
   home.username = "nullen";
   home.homeDirectory = "/home/nullen";
@@ -19,34 +18,32 @@
 
   programs.git = {
     enable = true;
-    userName = "Nullen Silic";
-    userEmail = "nullenary@proton.me";
+    settings = {
+      user.name = "BladyTwo";
+      user.email = "bladytwo@gmail.com";
+    };
   };
 
   services.flatpak.enable = true;
   services.flatpak.packages = [
     "md.obsidian.Obsidian"
+    "net.waterfox.waterfox"
   ];
 
   programs.waybar.enable = true;
-  programs.waybar.systemd.enable = true;
 
   programs.fish.enable = true;
 
   home.packages = [
     pkgs.yt-dlp
     pkgs.fastfetch
-    pkgs.genymotion
     pkgs.krita
     pkgs.inkscape
     pkgs.obs-studio
-    pkgs.davinci-resolve
     pkgs.blockbench
     pkgs.kdePackages.kdenlive
     pkgs.xournalpp
     pkgs.rnote
-    pkgs.telegram-desktop
-    pkgs.tg
     pkgs.trash-cli
     pkgs.texliveFull
     pkgs.texlab
@@ -95,7 +92,7 @@
   programs.tmux = {
     enable = true;
     shortcut = "Space";
-    terminal = "alacritty";
+    terminal = "screen-256color";
     keyMode = "vi";
     historyLimit = 8192;
     plugins = [
@@ -123,8 +120,6 @@
 
   programs.zellij = {
     enable = true;
-    enableFishIntegration = true;
-    exitShellOnExit = true;
     attachExistingSession = false;
   };
 

@@ -61,3 +61,4 @@
            )
   :pin "65134ecf10ffc4893ca60432b979a23c5ac9a3f1"
   )
+(package! clipetty)
