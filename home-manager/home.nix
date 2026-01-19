@@ -377,6 +377,7 @@
   # Sourced when using shell from home-manager.
   home.sessionVariables = {
     EDITOR = "nvim";
+    NIRI_ENABLE_XWAYLAND = "1";
   };
   home.sessionPath = [ "$HOME/.local/bin" ];
   home.shellAliases = {

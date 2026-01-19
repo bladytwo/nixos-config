@@ -161,6 +161,7 @@ in
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
+    xwayland-satellite
     home-manager
     ffmpeg-full
     neovim
