@@ -38,7 +38,7 @@
       nixosConfigurations.hubadic = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
         modules = [
-          ./hosts/hubadic/config.nix
+          ./hubadic/config.nix
         ];
       };
 

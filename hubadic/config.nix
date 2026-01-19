@@ -55,6 +55,7 @@ in
   console = {
     useXkbConfig = true;
   };
+
   services.xserver.xkb = {
     layout = "us";
     variant = "colemak_dh";
@@ -73,12 +74,12 @@ in
   programs.appimage.enable = true;
   programs.appimage.binfmt = true;
 
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
-    localNetworkGameTransfers.openFirewall = true;
-  };
+  # programs.steam = {
+  #   enable = false;
+  #   remotePlay.openFirewall = true;
+  #   dedicatedServer.openFirewall = true;
+  #   localNetworkGameTransfers.openFirewall = true;
+  # };
 
   programs.java.enable = true;
   programs.java.package = pkgs.temurin-bin;
@@ -115,15 +116,10 @@ in
 
   services.flatpak.enable = true;
 
-  # Waydroid
   virtualisation.waydroid = {
     enable = true;
     package = pkgs.waydroid-nftables;
   };
-  ##
-
-  services.terraria.enable = true;
-  systemd.services.terraria.wantedBy = lib.mkForce [ ];
 
   users.users.nullen = {
     isNormalUser = true;
@@ -144,15 +140,16 @@ in
   programs.fish.enable = true;
   programs.zoxide.enable = true;
   programs.zoxide.enableFishIntegration = true;
+  programs.zoxide.enableBashIntegration = true;
 
   programs.fzf.fuzzyCompletion = true;
   programs.fzf.keybindings = true;
 
-  programs.hyprland = {
-    enable = true;
-    withUWSM = true;
-    xwayland.enable = true;
-  };
+  # programs.hyprland = {
+  #   enable = true;
+  #   withUWSM = true;
+  #   xwayland.enable = true;
+  # };
 
   programs.niri.enable = true;
 
@@ -165,25 +162,22 @@ in
 
   environment.systemPackages = with pkgs; [
     home-manager
-    vivaldi
+    ffmpeg-full
     neovim
     nil
     brightnessctl
     pavucontrol
     swaylock
+    dunst
     fuzzel
     wl-clipboard
-    grim
-    slurp
     wdisplays
     waybar
-    fd
     ripgrep
     lsd
     unzip
     lzip
     htop-vim
-    zenith
     gnumake
     gnutls
     libgcc
@@ -196,14 +190,10 @@ in
     kdePackages.dolphin
     kdePackages.kio-admin
     blockbench
-    jmtpfs
-    simple-mtpfs
-    mtpfs
     libmtp
     android-file-transfer
     mpv
     feh
-    temurin-bin-17
     android-tools
   ];
 
