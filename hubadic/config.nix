@@ -19,9 +19,12 @@ in
 
   networking.hostName = "hubadic";
 
-  # networking.wireless.enable = true; #enable if not using networkmanager and iwd
-  # networking.networkmanager.enable = true; #enable if not using wpa-supplicant and iwd
-  networking.wireless.iwd.enable = true; # enable if not using networkmanager and wpa-supplicant
+  # networking.wireless.enable = true; #enable if not using iwd
+
+  networking.networkmanager.enable = true;
+  networking.networkmanager.wifi.backend = "iwd"; # use iwd as backend
+
+  networking.wireless.iwd.enable = true; # enable if not using wpa-supplicant
   networking.wireless.iwd.settings = {
     General = {
       EnableNetworkConfiguration = true;
@@ -31,8 +34,9 @@ in
     };
   };
 
-  time.timeZone = "Asia/Kolkata";
+  hardware.enableRedistributableFirmware = true;
 
+  time.timeZone = "Asia/Kolkata";
   i18n.defaultLocale = "en_US.UTF-8";
 
   i18n.extraLocaleSettings = {
@@ -47,10 +51,18 @@ in
     LC_TIME = "en_IN";
   };
 
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.theme = "maya";
-  services.displayManager.sddm.wayland.enable = true;
+  services.displayManager.cosmic-greeter.enable = true;
   services.gvfs.enable = true;
+
+  security.polkit.enable = true;
+
+  # Cosmic Desktop
+  services.system76-scheduler.enable = true;
+  services.desktopManager.cosmic.enable = true;
+  environment.cosmic.excludePackages = with pkgs; [
+    cosmic-edit
+  ];
+  ##
 
   console = {
     useXkbConfig = true;

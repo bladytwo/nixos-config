@@ -50,6 +50,7 @@
     pkgs.ghostscript
     pkgs.discord
     pkgs.python3
+    pkgs.android-studio
   ];
 
   home.file = {
