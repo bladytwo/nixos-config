@@ -16,6 +16,7 @@ in
   boot.loader.efi.canTouchEfiVariables = true;
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.supportedFilesystems = [ "exfat" ];
 
   networking.hostName = "hubadic";
 
@@ -86,13 +87,6 @@ in
   programs.appimage.enable = true;
   programs.appimage.binfmt = true;
 
-  # programs.steam = {
-  #   enable = false;
-  #   remotePlay.openFirewall = true;
-  #   dedicatedServer.openFirewall = true;
-  #   localNetworkGameTransfers.openFirewall = true;
-  # };
-
   programs.java.enable = true;
   programs.java.package = pkgs.temurin-bin;
 
@@ -157,12 +151,6 @@ in
   programs.fzf.fuzzyCompletion = true;
   programs.fzf.keybindings = true;
 
-  # programs.hyprland = {
-  #   enable = true;
-  #   withUWSM = true;
-  #   xwayland.enable = true;
-  # };
-
   programs.niri.enable = true;
 
   nix.settings.experimental-features = [
@@ -208,6 +196,8 @@ in
     mpv
     feh
     android-tools
+    exfatprogs
+    exfat
   ];
 
   programs.ydotool.enable = true;
